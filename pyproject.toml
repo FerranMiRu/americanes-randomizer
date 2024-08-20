@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "americanes-randomizer"
+version = "0.1.0"
+description = "App to create a random initial americana distribution based on a database"
+authors = ["Ferran Mirabent Rubinat <ferran.miru@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "americanes_randomizer", from = "src" },
+]
+
+[tool.poetry.scripts]
+migrate = "scripts:migrate"
+build = "scripts:build"
+lint = "scripts:lint"
+lint_fix = "scripts:lint_fix"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+numpy = "^1.26.4"
+pandas = "^2.2.2"
+sqlalchemy = "^2.0.30"
+alembic = "^1.13.1"
+pydantic = "^2.7.1"
+sv-ttk = "^2.6.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "*"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "S", "D", "D212", "D402", "D417"]
+ignore = ["D100", "D104", "D400"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts.py" = ["S603", "S605", "S607", "D"]
+"tests/**/test*.py" = ["S101", "D"]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
