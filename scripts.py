@@ -3,12 +3,20 @@ import subprocess
 import sys
 
 
-def migrate(args=sys.argv):
-    subprocess.check_call(["alembic", "revision", "--autogenerate", "-m"] + args[1:])
-
-
 def build(args=sys.argv):
-    pass
+    subprocess.check_call(
+        [
+            "pyinstaller",
+            "-i",
+            ".\\assets\\app_icon.ico",
+            "--add-data",
+            ".\\assets\\ttk_theme:.\\assets\\ttk_theme",
+            "--optimize",
+            "2",
+            ".\\src\\americanes_randomizer\\main.py",
+        ]
+        + args[1:]
+    )
 
 
 def lint(args=sys.argv):

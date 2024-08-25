@@ -1,8 +1,10 @@
 from typing import Any
 
-from sqlalchemy import Column, String
+from sqlalchemy import Column, Enum, String
 from sqlalchemy.ext.declarative import declared_attr
 from sqlalchemy.orm import as_declarative
+
+from americanes_randomizer.constants import Levels
 
 
 @as_declarative()
@@ -30,4 +32,4 @@ class Player(BaseModel):
     """
 
     name = Column(String, primary_key=True)
-    level = Column(String, nullable=False)
+    level = Column(Enum(Levels), nullable=False)

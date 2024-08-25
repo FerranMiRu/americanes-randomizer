@@ -1,5 +1,7 @@
 from pydantic import BaseModel, Field
 
+from americanes_randomizer.constants import Levels
+
 
 class CreatePlayer(BaseModel):
     """Pydantic model to create players
@@ -13,7 +15,7 @@ class CreatePlayer(BaseModel):
     """
 
     name: str = Field(..., min_length=3, max_length=50)
-    level: str = Field(..., min_length=1, max_length=3)
+    level: Levels
 
 
 class ShowPlayer(CreatePlayer):
@@ -39,7 +41,7 @@ class UpdatePlayer(BaseModel):
         The level of the user [A, B+, B, C+, C, D], min length 1, max length 3
     """
 
-    level: str = Field(..., min_length=1, max_length=3)
+    level: Levels
 
 
 class DeletePlayer(BaseModel):
