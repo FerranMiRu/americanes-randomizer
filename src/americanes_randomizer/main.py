@@ -395,7 +395,20 @@ class AmericanesRandomizerApp(ttk.Frame):
         )
 
         if is_save_americana:
-            save_path = Path().home().resolve() / "Desktop" / "americana_distribution.txt"
+            home_path = Path().home().resolve()
+            file_name = "americana_distribution.txt"
+
+            if (desktop_path := home_path / "Desktop").exists():
+                save_path = desktop_path / file_name
+            elif (desktop_path := home_path / "Escritorio").exists():
+                save_path = desktop_path / file_name
+            elif (desktop_path := home_path / "One Drive" / "Escritorio").exists():
+                save_path = desktop_path / file_name
+            elif (desktop_path := home_path / "OneDrive" / "Escritorio").exists():
+                save_path = desktop_path / file_name
+            else:
+                save_path = Path.cwd() / file_name
+
             with open(save_path, "w") as f:
                 f.write(americana_distribution_message)
 

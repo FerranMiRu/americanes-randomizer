@@ -9,7 +9,6 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-migrate = "scripts:migrate"
 build = "scripts:build"
 lint = "scripts:lint"
 lint_fix = "scripts:lint_fix"
